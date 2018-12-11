@@ -1,0 +1,3 @@
+C:/Users/Manel/CLionProjects/Distribuida/EX0/MasterNode/cmake-build-debug/CMakeFiles/MasterNode.dir
+C:/Users/Manel/CLionProjects/Distribuida/EX0/MasterNode/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Manel/CLionProjects/Distribuida/EX0/MasterNode/cmake-build-debug/CMakeFiles/rebuild_cache.dir
