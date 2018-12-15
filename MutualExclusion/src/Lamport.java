@@ -1,23 +1,52 @@
+import java.net.DatagramPacket;
+
 public class Lamport extends Thread{
     private DirectClock v;
     private int[] q; //request queue
-    final int N = 3;
     private int myId = 0;
     private Network network;
 
     public Lamport(int id, Network network){
         this.myId = id;
-        v = new DirectClock(this.N, this.myId);
-        this.q = new int[N];
-        for(int j =0 ; j<N;j++){
+        v = new DirectClock(network.getOtherPorts().length, this.myId);
+        this.q = new int[network.getOtherPorts().length];
+        for(int j =0 ; j<network.getOtherPorts().length;j++){
             this.q[j] = Integer.MAX_VALUE;
         }
         this.network = network;
     }
 
     public void run(){
-        this.network.reciveMessage();
-        System.out.println("LW"+this.myId+" ha recibido mensaje");
+        String message = "";
+        DatagramPacket datagramPacket;
+
+        while(true) {
+
+            while(!(message.equals("TOKEN"))){
+
+                datagramPacket = this.network.reciveMessage();
+                message = new String(datagramPacket.getData(),0,datagramPacket.getLength());
+
+            }
+
+            requestCS();
+
+            for(int i = 0; i < 10; i++) {
+
+                System.out.println("Soc el procés lightweight A" + (this.myId + 1));
+
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            releaseCS();
+            this.network.sendTokenMessage(6665);
+            message = "";
+        }
     }
 
     public synchronized void requestCS(){
@@ -35,7 +64,7 @@ public class Lamport extends Thread{
     }
 
     boolean okeyCS(){
-        for (int j = 0; j < N; j++){
+        for (int j = 0; j < this.network.getOtherPorts().length; j++){
             if(isGreater(q[myId],myId,q[j],j)) {
                 return false;
             }
@@ -51,19 +80,47 @@ public class Lamport extends Thread{
         return ((entry1 > entry2) || ((entry1 == entry2) && (pid1 > pid2)));
     }
 
-    public synchronized void handleMsg(/*Msg*/String m, int src, String tag){
-        int timeStamp = 0;//m.getMessageInt();
-        v.recieveAction(src,timeStamp);
-        if(tag.equals("request")){
-            this.q[src] = timeStamp;
-            network.sentMessage(src,"ack",v.getValue(this.myId));
-        }else if(tag.equals("release")){
-            this.q[src] = Integer.MAX_VALUE;
+    public synchronized void handleMsg(int timeStamp, int src, String tag){
+        int id = network.getPosition(src);
+
+        if(id < 0) {
+            System.out.println("ERROR: La conversión de puerto a id no salio bien");
+            return;
         }
-        //notify();
+
+        v.recieveAction(id,timeStamp);
+
+        if(tag.equals("request")){
+            this.q[id] = timeStamp;
+            network.sentMessage(src,"ack",v.getValue(this.myId));
+
+        }else if(tag.equals("release")){
+            this.q[id] = Integer.MAX_VALUE;
+
+        }
+
     }
 
     public void myWait(){
+        DatagramPacket datagramPacket;
 
+        datagramPacket = this.network.reciveMessage();
+
+        if(datagramPacket != null){
+
+            String message = new String(datagramPacket.getData(),0,datagramPacket.getLength());
+            String[] parts = message.split("&");
+
+            int portSender = Integer.valueOf(parts[0]);
+            int timeStamp = Integer.valueOf(parts[2]);
+
+            this.handleMsg(timeStamp,portSender,parts[1]);
+
+        }
+        /*try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
     }
 }

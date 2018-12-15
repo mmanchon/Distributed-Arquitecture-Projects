@@ -4,11 +4,10 @@ import java.net.*;
 public class Network {
 
     private DatagramSocket mySocket;
-    private DatagramPacket senderPacket;
-    private DatagramPacket reciverPacket;
     private InetAddress reciverHost;
     private int otherPorts[];
     final int MAX_LEN = 100;
+    private int myPort;
 
     /**
      * @param my_sender_port
@@ -16,7 +15,7 @@ public class Network {
      */
     public Network(int my_sender_port, int otherPorts[]) {
         try {
-
+            this.myPort = my_sender_port;
             this.mySocket = new DatagramSocket(my_sender_port);
             reciverHost = InetAddress.getLocalHost();
             this.otherPorts = otherPorts;
@@ -32,14 +31,17 @@ public class Network {
      * @param message
      */
     public void sentMessage(int port, String message, int clk) {
-        byte[] senderBuffer = message.getBytes();
+        String messageBuffer = this.myPort+"&"+message+"&"+clk;
+        byte[] senderBuffer = messageBuffer.getBytes();
 
         DatagramPacket datagramPacket = new DatagramPacket(senderBuffer, senderBuffer.length);
         datagramPacket.setAddress(reciverHost);
 
         datagramPacket.setPort(port);
+
         try {
             this.mySocket.send(datagramPacket);
+
         } catch (IOException e) {
             System.out.println("ERROR: No s'ha pogut enviar el packet!");
         }
@@ -47,21 +49,50 @@ public class Network {
     }
 
     public void broadcastMSG(String message, int clk) {
-        for (int port :
-                this.otherPorts) {
-            this.sentMessage(port, message, clk);
+        for (int port : this.otherPorts) {
+
+            if(port != this.myPort)
+                this.sentMessage(port, message, clk);
+
         }
     }
 
-    public void reciveMessage() {
+    public DatagramPacket reciveTimeOutMessage() {
         byte[] reciverBuffer = new byte[MAX_LEN];
         DatagramPacket packetReciver = new DatagramPacket(reciverBuffer, MAX_LEN);
+
+
         try {
+
+            this.mySocket.setSoTimeout(1);
+            this.mySocket.receive(packetReciver);
+
+        }catch (SocketTimeoutException e2){
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return packetReciver;
+    }
+
+    public DatagramPacket reciveMessage() {
+        byte[] reciverBuffer = new byte[MAX_LEN];
+        DatagramPacket packetReciver = new DatagramPacket(reciverBuffer, MAX_LEN);
+        /*try {
+            this.mySocket.setSoTimeout(0);
+        } catch (SocketException e) {
+            System.out.println("No he podido añadir timeout");
+        }*/
+
+        try{
             this.mySocket.receive(packetReciver);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        return packetReciver;
     }
 
     public void setTimeOut(int num) {
@@ -69,6 +100,25 @@ public class Network {
             this.mySocket.setSoTimeout(num);
         } catch (SocketException e) {
             System.out.println("ERROR: No he pogut assignar timeout");
+        }
+    }
+
+    public int getPosition(int port){
+        for (int i = 0; i < this.otherPorts.length; i++){
+            if (port == this.otherPorts[i]) return i;
+        }
+
+        return -1;
+    }
+
+    public void sendTokenMessage(int port){
+        String message = "TOKEN";
+        byte[] senderBuffer = message.getBytes();
+        DatagramPacket packetSender = new DatagramPacket(senderBuffer, senderBuffer.length, reciverHost, port);
+        try {
+            this.mySocket.send(packetSender);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -87,22 +137,6 @@ public class Network {
         } catch (SocketException e) {
             e.printStackTrace();
         }
-    }
-
-    public DatagramPacket getSenderPacket() {
-        return senderPacket;
-    }
-
-    public void setSenderPacket(DatagramPacket senderPacket) {
-        this.senderPacket = senderPacket;
-    }
-
-    public DatagramPacket getReciverPacket() {
-        return reciverPacket;
-    }
-
-    public void setReciverPacket(DatagramPacket reciverPacket) {
-        this.reciverPacket = reciverPacket;
     }
 
     public InetAddress getReciverHost() {

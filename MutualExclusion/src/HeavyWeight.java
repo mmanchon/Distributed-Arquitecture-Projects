@@ -24,20 +24,21 @@ public class HeavyWeight extends Thread {
 
     }
 
+
     private void heavyWeight1(int my_port, int reciver_port) throws IOException {
         //creem el socket per establir la connexió amb l'altre heavy weight
-        DatagramSocket senderSocket; //= new DatagramSocket(my_port);
-        DatagramSocket reciverSocket;// = new DatagramSocket(my_reciver_port);
+        DatagramSocket mySocket = new DatagramSocket(my_port);
 
-        Lamport lamport1 = new Lamport(0, new Network(6667, new int[]{6668, 6669}));
-        Lamport lamport2 = new Lamport(1, new Network(6668, new int[]{6667, 6669}));
-        Lamport lamport3 = new Lamport(2, new Network(6669, new int[]{6667, 6668}));
+        int[] arrayPorts = new int[]{6667,6668,6669};
 
-        lamport1.start();
-        lamport2.start();
-        lamport3.start();
+        Lamport lamport;
 
-        //El missatge que enviarem a l'altre node. El passem a bytes
+        for(int i=0; i<arrayPorts.length; i++){
+            lamport = new Lamport(i, new Network(arrayPorts[i], arrayPorts));
+            lamport.start();
+        }
+
+        //El missatge que enviarem a l'altre node el passem a bytes
         String message = "TOKEN";
         byte[] senderBuffer = message.getBytes();
         byte[] reciverBuffer = new byte[MAX_LEN];
@@ -53,51 +54,33 @@ public class HeavyWeight extends Thread {
 
 
 
-            reciverSocket = new DatagramSocket(my_port);
-            reciverSocket.receive(packetReciver);
-            reciverSocket.close();
+            mySocket.receive(packetReciver);
 
-            System.out.println("HeavyWeight1 tiene el token");
+            System.out.println("HW1 tiene el token");
 
             //Enviem el packet
-            senderSocket = new DatagramSocket(my_port);
+            for(int i = 0; i < arrayPorts.length; i++){
+                packetSender.setPort(arrayPorts[i]);
+                mySocket.send(packetSender);
+            }
 
-            //Enviem al LW0
-            packetSender.setPort(6667);
-            senderSocket.send(packetSender);
-
-            //Enviem al LW1
-            packetSender.setPort(6668);
-            senderSocket.send(packetSender);
-
-            //Enviem al LW2
-            packetSender.setPort(6669);
-            senderSocket.send(packetSender);
+            for (int i=0; i < arrayPorts.length;i++){
+                mySocket.receive(packetReciver);
+            }
 
             //Enviem al HW2
             packetSender.setPort(reciver_port);
-            senderSocket.send(packetSender);
+            mySocket.send(packetSender);
 
-            //Tanquem el socket
-            senderSocket.close();
-
-            /*try {
-                sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
         }
 
-        /*senderSocket.close();
-        reciverSocket.close();
-*/
     }
 
 
     private void heavyWeight2(int my_port, int reciver_port) throws IOException {
         //creem el socket per establir la connexió amb l'altre heavy weight
-        DatagramSocket senderSocket; //= new DatagramSocket(my_sender_port);
-        DatagramSocket reciverSocket;// = new DatagramSocket(my_reciver_port);
+        DatagramSocket mySocket = new DatagramSocket(my_port);
+       // DatagramSocket reciverSocket;// = new DatagramSocket(my_reciver_port);
 
         //El missatge que enviarem a l'altre node. El passem a bytes
         String message = "TOKEN";
@@ -113,28 +96,13 @@ public class HeavyWeight extends Thread {
 
         while (true) {
 
-            senderSocket = new DatagramSocket(my_port);
-            senderSocket.send(packetSender);
-            senderSocket.close();
-
-            try {
-                sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            mySocket.send(packetSender);
 
             //Enviem el packet
-            reciverSocket = new DatagramSocket(my_port);
-            reciverSocket.receive(packetReciver);
-            reciverSocket.close();
+            mySocket.receive(packetReciver);
 
-            System.out.println("HeavyWeight2 tiene el token");
+            System.out.println("HW2 tiene el token");
 
-            /*try {
-                sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
         }
     }
 }
