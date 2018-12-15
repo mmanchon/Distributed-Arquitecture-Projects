@@ -31,7 +31,7 @@ public class Network {
      * @param message
      */
     public void sentMessage(int port, String message, int clk) {
-        String messageBuffer = this.myPort+"&"+message+"&"+clk;
+        String messageBuffer = this.myPort + "&" + message + "&" + clk;
         byte[] senderBuffer = messageBuffer.getBytes();
 
         DatagramPacket datagramPacket = new DatagramPacket(senderBuffer, senderBuffer.length);
@@ -51,7 +51,7 @@ public class Network {
     public void broadcastMSG(String message, int clk) {
         for (int port : this.otherPorts) {
 
-            if(port != this.myPort)
+            if (port != this.myPort)
                 this.sentMessage(port, message, clk);
 
         }
@@ -67,7 +67,7 @@ public class Network {
             this.mySocket.setSoTimeout(1);
             this.mySocket.receive(packetReciver);
 
-        }catch (SocketTimeoutException e2){
+        } catch (SocketTimeoutException e2) {
             return null;
 
         } catch (IOException e) {
@@ -80,13 +80,8 @@ public class Network {
     public DatagramPacket reciveMessage() {
         byte[] reciverBuffer = new byte[MAX_LEN];
         DatagramPacket packetReciver = new DatagramPacket(reciverBuffer, MAX_LEN);
-        /*try {
-            this.mySocket.setSoTimeout(0);
-        } catch (SocketException e) {
-            System.out.println("No he podido añadir timeout");
-        }*/
 
-        try{
+        try {
             this.mySocket.receive(packetReciver);
         } catch (IOException e) {
             e.printStackTrace();
@@ -103,15 +98,15 @@ public class Network {
         }
     }
 
-    public int getPosition(int port){
-        for (int i = 0; i < this.otherPorts.length; i++){
+    public int getPosition(int port) {
+        for (int i = 0; i < this.otherPorts.length; i++) {
             if (port == this.otherPorts[i]) return i;
         }
 
         return -1;
     }
 
-    public void sendTokenMessage(int port){
+    public void sendTokenMessage(int port) {
         String message = "TOKEN";
         byte[] senderBuffer = message.getBytes();
         DatagramPacket packetSender = new DatagramPacket(senderBuffer, senderBuffer.length, reciverHost, port);
@@ -154,4 +149,6 @@ public class Network {
     public void setOtherPorts(int[] otherPorts) {
         this.otherPorts = otherPorts;
     }
+
+
 }

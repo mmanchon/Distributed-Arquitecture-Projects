@@ -1,5 +1,6 @@
 import java.net.*;
 import java.io.*;
+import java.util.Random;
 
 
 public class HeavyWeight extends Thread {
@@ -28,12 +29,12 @@ public class HeavyWeight extends Thread {
     private void heavyWeight1(int my_port, int reciver_port) throws IOException {
         //creem el socket per establir la connexió amb l'altre heavy weight
         DatagramSocket mySocket = new DatagramSocket(my_port);
-
-        int[] arrayPorts = new int[]{6667,6668,6669};
-
+        Random r = new Random();
+        int[] arrayPorts = new int[]{6667, 6668, 6669};
+        int result;
         Lamport lamport;
 
-        for(int i=0; i<arrayPorts.length; i++){
+        for (int i = 0; i < arrayPorts.length; i++) {
             lamport = new Lamport(i, new Network(arrayPorts[i], arrayPorts));
             lamport.start();
         }
@@ -53,18 +54,24 @@ public class HeavyWeight extends Thread {
         while (true) {
 
 
-
             mySocket.receive(packetReciver);
 
-            System.out.println("HW1 tiene el token");
+            //System.out.println("HW1 tiene el token");
+            result = r.nextInt(arrayPorts.length);
 
             //Enviem el packet
-            for(int i = 0; i < arrayPorts.length; i++){
+
+            for (int i = result; i < arrayPorts.length; i++) {
                 packetSender.setPort(arrayPorts[i]);
                 mySocket.send(packetSender);
             }
 
-            for (int i=0; i < arrayPorts.length;i++){
+            for (int i = 0; i < result; i++) {
+                packetSender.setPort(arrayPorts[i]);
+                mySocket.send(packetSender);
+            }
+
+            for (int i = 0; i < arrayPorts.length; i++) {
                 mySocket.receive(packetReciver);
             }
 
@@ -80,7 +87,14 @@ public class HeavyWeight extends Thread {
     private void heavyWeight2(int my_port, int reciver_port) throws IOException {
         //creem el socket per establir la connexió amb l'altre heavy weight
         DatagramSocket mySocket = new DatagramSocket(my_port);
-       // DatagramSocket reciverSocket;// = new DatagramSocket(my_reciver_port);
+        // DatagramSocket reciverSocket;// = new DatagramSocket(my_reciver_port);
+        RAMutex raMutex;
+        int[] arrayPorts = new int[]{7000, 7001};
+
+        for (int i = 0; i < arrayPorts.length; i++) {
+            raMutex = new RAMutex(i, new Network(arrayPorts[i], arrayPorts));
+            raMutex.start();
+        }
 
         //El missatge que enviarem a l'altre node. El passem a bytes
         String message = "TOKEN";
@@ -101,7 +115,18 @@ public class HeavyWeight extends Thread {
             //Enviem el packet
             mySocket.receive(packetReciver);
 
-            System.out.println("HW2 tiene el token");
+            //System.out.println("HW2 tiene el token");
+
+            for (int i = 0; i < arrayPorts.length; i++) {
+                packetSender.setPort(arrayPorts[i]);
+                mySocket.send(packetSender);
+            }
+
+            for (int i = 0; i < arrayPorts.length; i++) {
+                mySocket.receive(packetReciver);
+            }
+
+            packetSender.setPort(reciver_port);
 
         }
     }

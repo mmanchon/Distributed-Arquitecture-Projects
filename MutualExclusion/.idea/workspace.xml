@@ -2,18 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="478d49da-db11-4985-9be1-e9c3d98be889" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/RicardAndAgrawala.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LamportClock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/QT2/DirectClock.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/QT2/DirectClock.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/QT2/HeavyWeight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/QT2/HeavyWeight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/QT2/Lamport.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/QT2/Lamport.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/QT2/LightWeight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/QT2/LightWeight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/QT2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/QT2/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/QT2/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/QT2/Network.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/QT2/RicardAndAgrawala.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HeavyWeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HeavyWeight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lamport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lamport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Network.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RicardAndAgrawala.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RAMutex.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,14 +24,44 @@
     <SUITE FILE_PATH="coverage/MutualExclusion$Unnamed.ic" NAME="Unnamed Coverage Results" MODIFIED="1544868351926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.44298822">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/HeavyWeight.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="105">
+                  <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#168#169#0" expanded="true" />
+                    <element signature="e#200#201#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/RAMutex.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="73" selection-start-line="73" selection-end-line="73" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Network.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+                <state relative-caret-position="1295">
+                  <caret line="108" column="22" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#3428#3429#0" expanded="true" />
@@ -53,47 +81,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Main.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/DirectClock.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="9" selection-start-line="9" selection-end-line="9" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/HeavyWeight.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="195">
-                  <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#168#169#0" expanded="true" />
-                    <element signature="e#200#201#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Lamport.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+                <state relative-caret-position="120">
+                  <caret line="32" selection-start-line="32" selection-end-line="32" />
                 </state>
               </provider>
             </entry>
@@ -112,6 +104,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>reciveMessage</find>
+      <find>SYSTEM</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -121,19 +114,21 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/RicardAndAgrawala.java" />
         <option value="$PROJECT_DIR$/src/DirectClock.java" />
+        <option value="$PROJECT_DIR$/src/LamportClock.java" />
+        <option value="$PROJECT_DIR$/src/RicardAndAgrawala.java" />
+        <option value="$PROJECT_DIR$/src/RAMutex.java" />
         <option value="$PROJECT_DIR$/src/Lamport.java" />
-        <option value="$PROJECT_DIR$/src/HeavyWeight.java" />
         <option value="$PROJECT_DIR$/src/Network.java" />
+        <option value="$PROJECT_DIR$/src/HeavyWeight.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="1939" />
-    <option name="height" value="1099" />
+    <option name="x" value="993" />
+    <option name="y" value="25" />
+    <option name="width" value="927" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -164,7 +159,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544869816775" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544894346701" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -208,12 +203,12 @@
       <workItem from="1544555740443" duration="3735000" />
       <workItem from="1544712218105" duration="4328000" />
       <workItem from="1544786766042" duration="8799000" />
-      <workItem from="1544807842389" duration="6116000" />
+      <workItem from="1544807842389" duration="14861000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50529000" />
+    <option name="totallyTimeSpent" value="59274000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -226,9 +221,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14831212" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13337022" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -293,6 +287,10 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Lamport and Richard&amp;Argwalas Algorithms done. Some reaorganization is needed for repeated code. Also random init on lightweights." />
+    <option name="LAST_COMMIT_MESSAGE" value="Lamport and Richard&amp;Argwalas Algorithms done. Some reaorganization is needed for repeated code. Also random init on lightweights." />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/AppData/Local/Temp/DirectClock.png" />
     <entry file="file://$PROJECT_DIR$/src/LightWeight.java">
@@ -303,12 +301,8 @@
       </provider>
     </entry>
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_181/src.zip!/java/lang/Object.java" />
-    <entry file="file://$PROJECT_DIR$/src/RicardAndAgrawala.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
+    <entry file="jrt:///usr/lib/jvm/java-11-openjdk-amd64!/java.base/java/lang/NumberFormatException.class">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -317,9 +311,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jrt:///usr/lib/jvm/java-11-openjdk-amd64!/java.base/java/lang/NumberFormatException.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DirectClock.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -327,29 +318,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Lamport.java">
+    <entry file="file://$PROJECT_DIR$/src/LamportClock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+        <state relative-caret-position="285">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#64#65#0" expanded="true" />
+            <element signature="e#85#86#0" expanded="true" />
+            <element signature="e#113#114#0" expanded="true" />
+            <element signature="e#137#138#0" expanded="true" />
+            <element signature="e#161#162#0" expanded="true" />
+            <element signature="e#186#187#0" expanded="true" />
+            <element signature="e#326#327#0" expanded="true" />
+            <element signature="e#369#370#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HeavyWeight.java">
+    <entry file="file://$PROJECT_DIR$/src/RAMutex.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        <state relative-caret-position="360">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#168#169#0" expanded="true" />
-            <element signature="e#200#201#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Network.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        <state relative-caret-position="1295">
+          <caret line="108" column="22" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3428#3429#0" expanded="true" />
@@ -364,6 +363,25 @@
             <element signature="e#3987#3988#0" expanded="true" />
             <element signature="e#4038#4039#0" expanded="true" />
             <element signature="e#4082#4083#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lamport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HeavyWeight.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#168#169#0" expanded="true" />
+            <element signature="e#200#201#0" expanded="true" />
           </folding>
         </state>
       </provider>
