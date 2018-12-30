@@ -58,9 +58,8 @@ public class HeavyWeight extends Thread {
 
             //System.out.println("HW1 tiene el token");
             result = r.nextInt(arrayPorts.length);
-
+            System.out.println("RANDOM " + result);
             //Enviem el packet
-
             for (int i = result; i < arrayPorts.length; i++) {
                 packetSender.setPort(arrayPorts[i]);
                 mySocket.send(packetSender);
@@ -87,9 +86,8 @@ public class HeavyWeight extends Thread {
     private void heavyWeight2(int my_port, int reciver_port) throws IOException {
         //creem el socket per establir la connexió amb l'altre heavy weight
         DatagramSocket mySocket = new DatagramSocket(my_port);
-        // DatagramSocket reciverSocket;// = new DatagramSocket(my_reciver_port);
         RAMutex raMutex;
-        int[] arrayPorts = new int[]{7000, 7001};
+        int[] arrayPorts = new int[]{7000, 7001,7002};
 
         for (int i = 0; i < arrayPorts.length; i++) {
             raMutex = new RAMutex(i, new Network(arrayPorts[i], arrayPorts));
