@@ -1,0 +1,3 @@
+C:/Users/Manel/CLionProjects/Distribuida/RPC/cmake-build-debug/CMakeFiles/RPC.dir
+C:/Users/Manel/CLionProjects/Distribuida/RPC/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Manel/CLionProjects/Distribuida/RPC/cmake-build-debug/CMakeFiles/rebuild_cache.dir
